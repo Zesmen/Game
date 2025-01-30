@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Pyramid Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .step {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <h1>Payment Pyramid Game</h1>
+    <div id="game">
+        <div class="step" id="step1">
+            <h2>Step 1</h2>
+            <p>Pay $1 to proceed to the next step.</p>
+            <button onclick="makePayment(1)">Pay $1</button>
+        </div>
+        <div class="step" id="step2" style="display: none;">
+            <h2>Step 2</h2>
+            <p>Pay $2 to proceed to the next step.</p>
+            <button onclick="makePayment(2)">Pay $2</button>
+        </div>
+        <div class="step" id="step3" style="display: none;">
+            <h2>Step 3</h2>
+            <p>Pay $3 to proceed to the next step.</p>
+            <button onclick="makePayment(3)">Pay $3</button>
+        </div>
+        <div class="step" id="step4" style="display: none;">
+            <h2>Step 4</h2>
+            <p>Pay $4 to proceed to the next step.</p>
+            <button onclick="makePayment(4)">Pay $4</button>
+        </div>
+        <div class="step" id="step5" style="display: none;">
+            <h2>Step 5</h2>
+            <p>Pay $5 to complete the pyramid.</p>
+            <button onclick="makePayment(5)">Pay $5</button>
+        </div>
+        <div id="completion" style="display: none;">
+            <h2>Congratulations!</h2>
+            <p>You have completed the payment pyramid.</p>
+        </div>
+    </div>
+
+    <script>
+        // Track the current step
+        let currentStep = 1;
+
+        // Function to simulate payment
+        function makePayment(amount) {
+            alert(`Simulating payment of $${amount}...`);
+            // Simulate payment success
+            const paymentSuccessful = true; // Replace with actual payment logic
+
+            if (paymentSuccessful) {
+                // Hide the current step
+                document.getElementById(`step${currentStep}`).style.display = 'none';
+                currentStep++;
+
+                if (currentStep <= 5) {
+                    // Show the next step
+                    document.getElementById(`step${currentStep}`).style.display = 'block';
+                } else {
+                    // Show completion message
+                    document.getElementById('completion').style.display = 'block';
+                }
+            } else {
+                alert('Payment failed. Please try again.');
+            }
+        }
+
+        // Initialize the game
+        document.getElementById('step1').style.display = 'block';
+    </script>
+</body>
+</html>
